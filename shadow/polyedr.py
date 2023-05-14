@@ -232,5 +232,3 @@ class Polyedr:
             if f.is_invisible() and f.is_center_outside_cube() and f.angle():
                 inv_area += f.area(self.c)
         return inv_area
-
-
