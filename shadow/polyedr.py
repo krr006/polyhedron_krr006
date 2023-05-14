@@ -222,3 +222,15 @@ class Polyedr:
             if f.is_invisible() and f.is_center_outside_cube() and f.angle():
                 inv_area += f.area(self.c)
         print('The summary area of invisible facets: ', inv_area)
+
+    def invisible_area(self):
+        inv_area = 0
+        for e in self.edges:
+            for f in self.facets:
+                e.shadow(f)
+        for f in self.facets:
+            if f.is_invisible() and f.is_center_outside_cube() and f.angle():
+                inv_area += f.area(self.c)
+        return inv_area
+
+
