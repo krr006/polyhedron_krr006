@@ -92,9 +92,10 @@ class Facet:
     """ Грань полиэдра """
     # Параметры конструктора: список вершин
 
-    def __init__(self, vertexes, edges):
+    def __init__(self, vertexes, edges=None):
         self.vertexes = vertexes
-        self.edges = edges
+        if edges is not None:
+            self.edges = edges
 
     # «Вертикальна» ли грань?
     def is_vertical(self):
@@ -156,7 +157,7 @@ class Facet:
         n = self.h_normal()
         e = R3(0.0, 0.0, 1.0)
         ang = acos(n.dot(e)/(n.length() * e.length()))
-        return ang <= pi/7
+        return abs(ang) <= pi/7
 
     def is_center_outside_cube(self):
         c = self.center()
@@ -174,7 +175,7 @@ class Polyedr:
 
         # списки вершин, рёбер и граней полиэдра
         self.vertexes, self.edges, self.facets = [], [], []
-        self.c = 1
+        self.c = 1.0
 
         # список строк файла
         with open(file) as f:
@@ -212,7 +213,7 @@ class Polyedr:
     # Метод изображения полиэдра
     def draw(self, tk):
         tk.clean()
-        inv_area = 0
+        inv_area = 0.0
         for e in self.edges:
             for f in self.facets:
                 e.shadow(f)
@@ -224,7 +225,7 @@ class Polyedr:
         print('The summary area of invisible facets: ', inv_area)
 
     def invisible_area(self):
-        inv_area = 0
+        inv_area = 0.0
         for e in self.edges:
             for f in self.facets:
                 e.shadow(f)

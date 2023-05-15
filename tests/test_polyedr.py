@@ -2,6 +2,7 @@ from pytest import approx
 from math import sqrt
 from shadow.polyedr import Polyedr
 
+
 class TestPolyedr:
 
     def test_polyedr_1(self):

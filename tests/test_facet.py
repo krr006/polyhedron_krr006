@@ -89,14 +89,20 @@ class TestFacet:
 
     def test_area_1(self):
         f = Facet([R3(0.0, 0.0, 0.0), R3(3.0, 0.0, 0.0), R3(0.0, 3.0, 0.0)])
-        assert f.area() == approx(4.5)
+        assert f.area(1.0) == approx(4.5)
 
     def test_area_2(self):
-        f = Facet([R3(0.0, 0.0, 123), R3(3.0, 0.0, 43.0), R3(0.0, 3.0, 453.0)])
-        assert f.area() == approx(4.5)
+        f = Facet([R3(0.0, 0.0, 0.0),
+                   R3(10.0, 0.0, 0.0),
+                   R3(0.0, 10.0, 0.0),
+                   R3(10.0, 10.0, 0.0)])
+        assert f.area(1.0) == approx(100.0)
 
     def test_area_3(self):
-        f = Facet([R3(0.0, 0.0, 0.0), R3(3.0, 0.0, 0.0), R3(0.0, 3.0, 0.0), R3(3, 3, 3)])
-        assert f.area() == approx(4.5)
+        f = Facet([R3(0.0, 0.0, 0.0),
+                   R3(16.0, 0.0, 0.0),
+                   R3(1.0, 18.0, 0.0),
+                   R3(15.0, 18.0, 0.0)])
+        assert f.area(1.0) == approx(270.0)
 
-        # python3 -B -m pytest -p no:cacheprovider tests/test_facet.py
+        # python -B -m pytest -p no:cacheprovider tests/test_facet.py
