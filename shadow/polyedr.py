@@ -67,10 +67,7 @@ class Edge:
             s for s in reduce(add, gaps, []) if not s.is_degenerate()]
 
     def is_invisible(self):
-        if len(self.gaps) == 0:
-            return True
-        else:
-            return False
+        return len(self.gaps) == 0
 
     # Преобразование одномерных координат в трёхмерные
     def r3(self, t):
